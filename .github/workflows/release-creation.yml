@@ -1,0 +1,96 @@
+name: Release creation
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get tag message
+        id: get_tag_message
+        run: |
+          TAG_MESSAGE=$(git tag -l -n1 "${GITHUB_REF}" | sed '1d')
+          echo "::set-output name=message::$TAG_MESSAGE"
+        env:
+          GITHUB_REF: ${{ github.ref }}
+
+      - name: Install dependences
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Create source code archive as zip
+        run: |
+          zip -r source-code.zip . -x "./node_modules/*" -x "./.angular/cache/*" -x "*.tar.gz" -x "*.zip"
+
+      - name: Create source code archive as tar.gz
+        run: |
+          tar --exclude './node_modules' --exclude './dist' --exclude './.angular/cache' --exclude '*.{zip,tar.gz}' -zcf source-code.tar.gz ./*
+
+      - name: Create build archive as zip
+        run: |
+          zip -r dist.zip ./dist/*
+
+      - name: Create build archive as tar.gz
+        run: |
+          tar -zcf dist.tar.gz ./dist/*
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
+          prerelease: false
+          body: ${{ steps.get_tag_message.outputs.message }}
+
+      - name: Upload Source Code (tar.gz)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./source-code.tar.gz
+          asset_name: Source code (tar.gz)
+          asset_content_type: application/gzip
+
+      - name: Upload Source Code (zip)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./source-code.zip
+          asset_name: Source code (zip)
+          asset_content_type: application/gzip
+
+      - name: Upload Built (tar.gz)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist.tar.gz
+          asset_name: Built (tar.gz)
+          asset_content_type: application/gzip
+
+      - name: Upload Built (zip)
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist.zip
+          asset_name: Built (zip)
+          asset_content_type: application/gzip
