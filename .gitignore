@@ -1,0 +1,7 @@
+/dist
+/node_modules
+/.angular/cache
+.env
+.secrets
+*.key
+.vscode

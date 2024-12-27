@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+body { all:unset; }
+ul { list-style-type: none; }
+
+@import url('https://fonts.googleapis.com/css2?family=Freeman&family=Gafata&display=swap');
+
+.freeman-regular {
+  font-family: "Freeman", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.gafata-regular {
+  font-family: "Gafata", serif;
+  font-weight: 400;
+  font-style: normal;
+}

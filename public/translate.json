@@ -1,0 +1,18 @@
+{
+  "age": {
+    "fr": "ans",
+    "en": "y.o"
+  },
+  "description": {
+    "fr": "Norookezi, Créateur de contenu, concepteur développeur d'application web et mobile",
+    "en": "Norookezi, Content creator, web and mobile application concepter and developper"
+  },
+  "job": {
+    "fr": "Concepteur développeur d'application",
+    "en": "Application Designer Developer"
+  },
+  "cardDescription": {
+    "fr": "Je développe des applications backend en Typescript, en privilégiant une approche DevOps pour garantir la qualité et la sécurité de mes projets.",
+    "en": "I make backend apps with TypeScript while using a DevOps approach to guarantee the quality and security of my projects."
+  }
+}

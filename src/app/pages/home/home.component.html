@@ -1,0 +1,47 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<!-- Preloads -->
+<link rel="preload" as="image" href="/image/norookezi.jpg">
+
+<!-- Natural SEO -->
+<meta name="description" [content]="translationService.get('description')" />
+<meta name="keywords" content="Norookezi, Developpeur, web, backend, TypeScript, Devops">
+<meta name="author" content="Norookezi norookezi@pandacrp.com">
+<meta name="publisher" content="PandaCrp">  
+
+<!-- Open Graph SEO -->
+<meta property="og:title" content="Norookezi - Pandacrp" />
+<meta name="og:description" [content]="translationService.get('description')" />
+<meta name="og:image" content="/image/norookezi.jpg" />
+<meta name="og:url" content="https://pandacrp.com" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter SEO -->
+<meta property="twitter:title" content="Norookezi - Pandacrp">
+<meta property="twitter:description" [content]="translationService.get('description')">
+<meta property="twitter:image" content="/image/norookezi.jpg">
+<meta property="twitter:url" content="https://pandacrp.com">
+
+<app-header></app-header>
+<section class="hero">
+  <div class="card">
+    <img class="profile" src="/image/norookezi.jpg" alt="">
+    <div class="content">
+      <h1>Timothé Anquetil <q>Norookezi</q></h1>
+      <h2>{{translationService.get('job')}}</h2>
+      <p>{{translationService.get('cardDescription')}}</p>
+      <ul>
+        <li><app-text src="/image/birthday.png" alt="Birthday icon">{{ birthday }} {{translationService.get("age")}}</app-text></li>
+        <li><app-text src="/image/pin.png" alt="Pin point icon">Le Havre - France</app-text></li>
+      </ul>
+      <div class="networks">
+        <span>My networks</span>
+        <ul>
+          <li><a href="http://twitch.tv/norookezi"><app-text src="/image/twitch.png" alt="Twitch icon">Twitch</app-text></a></li>
+          <li><a href="https://www.linkedin.com/in/timoth%C3%A9-anquetil-5220a5341"><app-text src="/image/linkedin.png" alt="Linkedin icon">LinkedIn</app-text></a></li>
+          <li><a href="https://github.com/Norookezi"><app-text src="/image/git.png" alt="Github icon">GitHub</app-text></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

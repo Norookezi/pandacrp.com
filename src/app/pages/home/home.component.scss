@@ -1,0 +1,142 @@
+section.hero {
+  background-color: #FFE5C1;
+  min-height: 100vh;
+  height: fit-content;
+  width: 100vw;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  .card {
+    font-family: "Gafata", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #F9977B;
+    background-color: #1F2032;
+    width: 100vw;
+    position: relative;
+    border-radius: 1rem 1rem 0 0;
+
+    @media (min-width: 400px) {
+      & {
+        width: 90vw;
+      }
+    }
+
+    @media (min-width: 856px) {
+      & {
+        width: 75vw;
+      }
+    }
+
+    .content {
+      margin-top: clamp(3.875rem, calc(min(50vw, 30vh)/2), 8.46875rem);
+
+      @media (min-width: 856px) {
+        & {
+          margin-top:min(10vh, 3.05rem);
+          margin-left: clamp(3.875rem, 20vh, 8.46875rem);
+          padding: 1rem;
+        }
+      }
+
+      h1 {
+        font-weight: 200;
+        font-size: 2.5rem;
+        margin: 0;
+        & > q {
+          font-size: .8em;
+
+          @media (max-width: 502px) {
+            display: block;
+          }
+
+          opacity: .8;
+        }
+        @media (max-width: 856px) {
+          font-size: 2.0625rem;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      h2 {
+        opacity: .7;
+        margin: 0;
+        font-weight: 200;
+        padding: 0 .7rem;
+        @media (max-width: 856px) {
+          font-size: 1.36125rem;
+          width: calc(100% - 1.4rem);
+          text-align: center;
+        }
+      }
+
+      p {
+        font-size: 1.2rem;
+        text-align: justify;
+        @media (max-width: 856px) {
+          display: none;
+        }
+      }
+
+
+      .networks {
+        a {
+          color: #F9977B;
+          text-decoration: none;
+        }
+        & > span {
+          font-size: 1.36125rem;
+          display: block;
+
+          @media (max-width: 856px) {
+            padding-left: 1em;
+          }
+        }
+        
+        @media screen and (max-width: 320px) and (orientation: portrait), (max-height: 320px) and (orientation: landscape) {
+          & > span {
+            text-align: center;
+            width: 100%;
+            padding: 0;
+          }
+          ul {
+            display: flex;
+            padding: 0;
+            justify-content: space-evenly;
+          }
+          .text-span {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .profile {
+      width: min(50vw, 30vh);
+      max-width: 16.9375rem; //271px
+      min-width: 7.75rem; //124px
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 0.9375rem; //15px
+
+      @media (min-width: 856px) {
+        & {
+          left: 0;
+          top: 50%;
+
+          width: 40vh;
+          max-width: 16.9375rem; //271px
+          min-width: 7.75rem; //124px
+        }
+      }
+    }
+
+    app-text {
+      font-size: 1.5rem; //24px
+    }
+  }
+}
